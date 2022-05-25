@@ -1,0 +1,66 @@
+openapi: 3.0.1
+
+info:
+  title: Text Classification
+  version: 1.0.0
+  contact:
+    name: cjw531
+  description: |
+    Perform a text classification with binary and multi class CNN and CNN + BERT models.
+
+    * Binary: classify disaster (COVID, accident, etc.) text
+    * Multi: classify following categories of news article: 'automobile', 'entertainment', 'politics', 'science', 'sports', 'technology', 'world'
+
+    ---
+          How to use:
+          1. Input the text to be classified
+          2. specify which model to run, either binary or multi class models
+    ---
+servers:
+  - url: https://main-text-classification-server-cjw531.endpoint.ainize.ai
+
+paths:
+  /predict:
+    post:
+      requestBody:
+        required: true
+        description: |
+          This will classify the given text with the saved binary and multiclass CNN and BERT + CNN Models.
+
+          curl example for binary classification:
+          ```
+          curl -X POST "http://127.0.0.1:5000/predict" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "text= lots of peope assasinated in texas, total 10 killed" -F "type=1"
+          ```
+          curl example for multiclass classification:
+          ```
+          curl -X POST "http://127.0.0.1:5000/predict" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "text= lots of peope assasinated in texas, total 10 killed" -F "type=2"
+          ```
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: "Provide text to classify here"
+                type:
+                  type: string
+                  description: "The type of the classification: 1 --> binary, 2 --> multi class classifications"
+              required:
+                - text
+                - type
+      responses:
+        '200':
+          description: "Successful Response"
+          content:
+            application/json:
+              schema:
+                type: object
+        '300':
+          description: "Bad Argument Error"
+        '400':
+          description: "Bad Request Error"
+        '429':
+          description: "Too many requests"
+        '500':
+          description: "Server-side Error"

@@ -84,7 +84,7 @@ def main():
         elif classify == '2': # multiclass classification
             prediction = predict_multi_cnn(text)
         else:
-            return jsonify({'message': f'Invalid [type] request, {classify}'}), 400
+            return jsonify({'message': f'Invalid [type] request, {classify}'}), 300
 
     except Exception as e:
         return jsonify({'message': f'Invalid request, {e}'}), 400
