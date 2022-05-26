@@ -10,7 +10,6 @@ mlxtend
 jupyter
 ipython
 tensorflow-gpu
-tensorflow
 keras
 tqdm
 tensorflow-hub
