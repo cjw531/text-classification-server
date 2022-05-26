@@ -9,7 +9,7 @@ mlxtend
 jupyter
 ipython
 tensorflow-gpu
-keras
+keras==2.6.0
 tqdm
 tensorflow-hub
 psutil
