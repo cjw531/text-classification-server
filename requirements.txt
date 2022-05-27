@@ -1,5 +1,5 @@
 tensorflow==2.8.0
-tensorflow-text
+tensorflow-text==2.8.2
 flask==2.0.3
 pandas==1.4.2
 numpy==1.22.3
